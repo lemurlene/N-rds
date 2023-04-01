@@ -21,12 +21,22 @@ feedbackLink.addEventListener("click", function (evt) {
   evt.preventDefault();
   fedbackPopup.classList.add("pop-up_show");
 
-  if(storage) {
+  if (storageName && storageEmail) {
     fedbackName.value = storageName;
     fedbackEmail.value = storageEmail;
     fedbackMessage.focus();
+  } else {
+    if (storageName && !storageEmail) {
+      fedbackName.value = storageName;
+      fedbackEmail.focus();
+    } else {
+      if (!storageName && storageEmail) {
+        fedbackEmail.value = storageEmail;
+        fedbackName.focus();
+      }
+      fedbackName.focus();
+    }
   }
-  fedbackName.focus();
 });
 
 fedbackClose.addEventListener("click", function (evt) {
